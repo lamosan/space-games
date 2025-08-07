@@ -1,0 +1,36 @@
+{
+  "name": "space-games-collection",
+  "version": "1.0.0",
+  "description": "A collection of exciting space-themed browser games",
+  "main": "menu.html",
+  "scripts": {
+    "start": "serve .",
+    "dev": "live-server .",
+    "build": "echo 'No build process needed for static files'",
+    "deploy": "gh-pages -d ."
+  },
+  "keywords": [
+    "game",
+    "html5",
+    "canvas",
+    "javascript",
+    "space",
+    "browser-game",
+    "arcade"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "homepage": "https://yourusername.github.io/space-games",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/space-games.git"
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0",
+    "live-server": "^1.2.2",
+    "serve": "^14.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

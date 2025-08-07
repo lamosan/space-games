@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revenue Dashboard - Space Games Collection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #00ff88;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: #ccc;
+        }
+        
+        .chart-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .tips {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00ff88;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .back-link {
+            color: #00ff88;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1>💰 Revenue Dashboard</h1>
+            <p>Track your Space Games Collection monetization</p>
+            <a href="menu.html" class="back-link">← Back to Games</a>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="totalRevenue">$0.00</div>
+                <div class="stat-label">Estimated Total Revenue</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-value" id="monthlyRevenue">$0.00</div>
+                <div class="stat-label">This Month</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-value" id="totalAdViews">0</div>
+                <div class="stat-label">Total Ad Views</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-value" id="dailyPlayers">0</div>
+                <div class="stat-label">Daily Players (Est.)</div>
+            </div>
+        </div>
+        
+        <div class="chart-container">
+            <h3>📊 Revenue Breakdown</h3>
+            <div id="revenueChart">
+                <p>• Banner Ads: <span id="bannerRevenue">$0.00</span> (60%)</p>
+                <p>• Rewarded Videos: <span id="rewardedRevenue">$0.00</span> (35%)</p>
+                <p>• Sidebar Ads: <span id="sidebarRevenue">$0.00</span> (5%)</p>
+            </div>
+        </div>
+        
+        <div class="chart-container">
+            <h3>🎮 Game Analytics</h3>
+            <div id="gameStats">
+                <p>• Average Session: <span id="avgSession">0</span> minutes</p>
+                <p>• Most Popular Mode: <span id="popularMode">Classic</span></p>
+                <p>• Ad Engagement Rate: <span id="engagementRate">0%</span></p>
+                <p>• Player Retention: <span id="retention">0%</span></p>
+            </div>
+        </div>
+        
+        <div class="tips">
+            <h3>💡 Revenue Optimization Tips</h3>
+            <ul>
+                <li><strong>Traffic Growth:</strong> Share your game on social media and gaming forums</li>
+                <li><strong>Ad Placement:</strong> Test different positions to improve click-through rates</li>
+                <li><strong>User Experience:</strong> Balance ads with gameplay - happy players = more revenue</li>
+                <li><strong>Mobile Optimization:</strong> Ensure ads work well on all devices</li>
+                <li><strong>Content Updates:</strong> Regular updates keep players coming back</li>
+            </ul>
+        </div>
+        
+        <div class="chart-container">
+            <h3>🎯 Next Milestones</h3>
+            <div id="milestones">
+                <p>🎮 <strong>100 Daily Players:</strong> $30-50/month potential</p>
+                <p>🚀 <strong>1,000 Daily Players:</strong> $300-500/month potential</p>
+                <p>🌟 <strong>10,000 Daily Players:</strong> $3,000-5,000/month potential</p>
+                <p>💎 <strong>100,000 Daily Players:</strong> $30,000+/month potential</p>
+            </div>
+        </div>
+        
+        <div class="chart-container">
+            <h3>📈 Growth Strategy</h3>
+            <ol>
+                <li><strong>Phase 1:</strong> Focus on game quality and user experience</li>
+                <li><strong>Phase 2:</strong> Apply for Google AdSense (need steady traffic)</li>
+                <li><strong>Phase 3:</strong> Optimize ad placements and track performance</li>
+                <li><strong>Phase 4:</strong> Scale with more games and features</li>
+            </ol>
+        </div>
+    </div>
+    
+    <script>
+        // Load and display analytics data
+        function loadDashboardData() {
+            // Get stored ad analytics
+            const adHistory = JSON.parse(localStorage.getItem('adAnalytics') || '[]');
+            const gameStats = JSON.parse(localStorage.getItem('gameAdStats') || '{}');
+            
+            // Calculate estimates (these would be real data from AdSense)
+            const totalAds = adHistory.length;
+            const rewardedAds = adHistory.filter(ad => ad.type === 'rewarded_video').length;
+            const bannerViews = totalAds - rewardedAds;
+            
+            // Estimated revenue calculations
+            const bannerRevenue = bannerViews * 0.02; // $0.02 per view
+            const rewardedRevenue = rewardedAds * 0.25; // $0.25 per rewarded ad
+            const sidebarRevenue = bannerViews * 0.01; // $0.01 per sidebar view
+            const totalRevenue = bannerRevenue + rewardedRevenue + sidebarRevenue;
+            
+            // Update dashboard
+            document.getElementById('totalRevenue').textContent = `$${totalRevenue.toFixed(2)}`;
+            document.getElementById('monthlyRevenue').textContent = `$${(totalRevenue * 0.7).toFixed(2)}`;
+            document.getElementById('totalAdViews').textContent = totalAds;
+            document.getElementById('dailyPlayers').textContent = Math.floor(totalAds / 7) || 1;
+            
+            document.getElementById('bannerRevenue').textContent = `$${bannerRevenue.toFixed(2)}`;
+            document.getElementById('rewardedRevenue').textContent = `$${rewardedRevenue.toFixed(2)}`;
+            document.getElementById('sidebarRevenue').textContent = `$${sidebarRevenue.toFixed(2)}`;
+            
+            // Game analytics
+            const avgSession = gameStats.averageSessionLength ? 
+                Math.floor(gameStats.averageSessionLength / 60000) : 0;
+            document.getElementById('avgSession').textContent = avgSession;
+            
+            const engagementRate = totalAds > 0 ? 
+                ((rewardedAds / totalAds) * 100).toFixed(1) : 0;
+            document.getElementById('engagementRate').textContent = `${engagementRate}%`;
+            
+            // Most popular game mode
+            const modes = adHistory.map(ad => ad.gameMode).filter(Boolean);
+            const modeCount = {};
+            modes.forEach(mode => {
+                modeCount[mode] = (modeCount[mode] || 0) + 1;
+            });
+            
+            const popularMode = Object.keys(modeCount).sort((a, b) => 
+                modeCount[b] - modeCount[a])[0] || 'Classic Mode';
+            document.getElementById('popularMode').textContent = popularMode;
+            
+            // Estimated retention (players who watched ads)
+            const retention = rewardedAds > 0 ? 
+                Math.min(((rewardedAds / totalAds) * 100 + 30), 85) : 45;
+            document.getElementById('retention').textContent = `${retention.toFixed(0)}%`;
+        }
+        
+        // Update dashboard every 30 seconds
+        loadDashboardData();
+        setInterval(loadDashboardData, 30000);
+        
+        // Add some animation to numbers
+        function animateNumbers() {
+            const elements = document.querySelectorAll('.stat-value');
+            elements.forEach(el => {
+                el.style.transition = 'all 0.5s ease';
+                el.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    el.style.transform = 'scale(1)';
+                }, 200);
+            });
+        }
+        
+        // Refresh data button (hidden, but can be triggered)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'F5' || (e.ctrlKey && e.key === 'r')) {
+                e.preventDefault();
+                animateNumbers();
+                setTimeout(loadDashboardData, 300);
+            }
+        });
+    </script>
+</body>
+</html>

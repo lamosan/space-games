@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Games Collection - Free Online Browser Games</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Play amazing space-themed browser games for free! Choose from Asteroid Dodge, Speed Rush, Survival Mode, and more exciting space adventures.">
+    <meta name="keywords" content="space games, free online games, browser games, asteroid dodge, arcade games, space adventures">
+    <meta name="author" content="Space Games Collection">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/menu.html">
+    <meta property="og:title" content="Space Games Collection - Free Online Browser Games">
+    <meta property="og:description" content="Amazing collection of space-themed browser games. Play for free, no downloads required!">
+    <meta property="og:image" content="https://yourdomain.com/games-preview.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourdomain.com/menu.html">
+    <meta property="twitter:title" content="Space Games Collection">
+    <meta property="twitter:description" content="Amazing collection of space-themed browser games!">
+    <meta property="twitter:image" content="https://yourdomain.com/games-preview.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+            crossorigin="anonymous"></script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0f0f23, #1a1a2e, #16213e);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite ease-in-out alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 60px;
+        }
+
+        .title {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00ff88, #00aaff, #ffdd00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: #aaa;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            border-color: #00ff88;
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .game-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .game-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .game-description {
+            font-size: 1rem;
+            color: #ccc;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .game-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .game-features li {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 5px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .game-features li:before {
+            content: "⭐";
+            position: absolute;
+            left: 0;
+        }
+
+        .play-button {
+            background: linear-gradient(45deg, #00ff88, #00aaff);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .play-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.4);
+        }
+
+        .coming-soon {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .coming-soon .play-button {
+            background: #666;
+            cursor: not-allowed;
+        }
+
+        .footer {
+            margin-top: 80px;
+            padding: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .game-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1 class="title">SPACE GAMES</h1>
+            <p class="subtitle">Choose Your Adventure</p>
+            <p class="description">
+                Welcome to the ultimate space gaming experience! Select from our collection of exciting games and embark on thrilling adventures through the cosmos.
+            </p>
+            
+            <!-- Top Banner Ad -->
+            <div style="margin: 30px 0; text-align: center;">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                     data-ad-slot="2222222222"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+            </div>
+        </div>
+
+        <div class="games-grid">
+            <!-- Classic Barrier Dodge Game -->
+            <div class="game-card" onclick="playGame('classic')">
+                <div class="game-icon">🚀</div>
+                <h3 class="game-title">Asteroid Dodge</h3>
+                <p class="game-description">
+                    Navigate your spaceship through dangerous asteroid fields while collecting valuable coins. Test your reflexes and survival skills!
+                </p>
+                <ul class="game-features">
+                    <li>Progressive difficulty</li>
+                    <li>Sound effects & music</li>
+                    <li>Beautiful space graphics</li>
+                    <li>Score & level system</li>
+                </ul>
+                <button class="play-button">Play Now</button>
+            </div>
+
+            <!-- Speed Mode -->
+            <div class="game-card" onclick="playGame('speed')">
+                <div class="game-icon">⚡</div>
+                <h3 class="game-title">Speed Rush</h3>
+                <p class="game-description">
+                    High-speed version of Asteroid Dodge! Everything moves faster for an intense, adrenaline-pumping experience.
+                </p>
+                <ul class="game-features">
+                    <li>2x game speed</li>
+                    <li>Faster obstacles</li>
+                    <li>Quick reflexes required</li>
+                    <li>Higher score multipliers</li>
+                </ul>
+                <button class="play-button">Play Now</button>
+            </div>
+
+            <!-- Survival Mode -->
+            <div class="game-card" onclick="playGame('survival')">
+                <div class="game-icon">💀</div>
+                <h3 class="game-title">Survival Mode</h3>
+                <p class="game-description">
+                    Ultimate challenge! One life only, no mercy. How long can you survive in the most dangerous space sector?
+                </p>
+                <ul class="game-features">
+                    <li>Single life challenge</li>
+                    <li>Intense difficulty</li>
+                    <li>More obstacles</li>
+                    <li>Bragging rights</li>
+                </ul>
+                <button class="play-button">Play Now</button>
+            </div>
+
+            <!-- Peaceful Mode -->
+            <div class="game-card" onclick="playGame('peaceful')">
+                <div class="game-icon">🌟</div>
+                <h3 class="game-title">Peaceful Flight</h3>
+                <p class="game-description">
+                    Relaxing space journey with fewer obstacles and more coins. Perfect for beginners or when you want to unwind.
+                </p>
+                <ul class="game-features">
+                    <li>Fewer obstacles</li>
+                    <li>More coins to collect</li>
+                    <li>Relaxing gameplay</li>
+                    <li>Perfect for beginners</li>
+                </ul>
+                <button class="play-button">Play Now</button>
+            </div>
+
+            <!-- Coming Soon Games -->
+            <div class="game-card coming-soon">
+                <div class="game-icon">🛸</div>
+                <h3 class="game-title">Space Invaders</h3>
+                <p class="game-description">
+                    Defend Earth from alien invasion! Classic arcade-style shooter with modern graphics and effects.
+                </p>
+                <ul class="game-features">
+                    <li>Classic arcade action</li>
+                    <li>Power-ups & weapons</li>
+                    <li>Boss battles</li>
+                    <li>Multiple levels</li>
+                </ul>
+                <button class="play-button">Coming Soon</button>
+            </div>
+
+            <div class="game-card coming-soon">
+                <div class="game-icon">🌌</div>
+                <h3 class="game-title">Galaxy Explorer</h3>
+                <p class="game-description">
+                    Explore mysterious galaxies, discover new planets, and collect rare resources in this adventure game.
+                </p>
+                <ul class="game-features">
+                    <li>Open world exploration</li>
+                    <li>Resource collection</li>
+                    <li>Planet discovery</li>
+                    <li>Upgrade system</li>
+                </ul>
+                <button class="play-button">Coming Soon</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>🎮 Space Games Collection v1.0 | Built with HTML5 Canvas & JavaScript</p>
+            <p>Use keyboard controls (WASD or Arrow Keys) to navigate your spaceship</p>
+            
+            <!-- Bottom Banner Ad -->
+            <div style="margin: 30px 0; text-align: center;">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                     data-ad-slot="3333333333"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+            </div>
+        </div>
+    </div>
+
+    <!-- Initialize AdSense -->
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <script>
+        // Create animated stars background
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const numStars = 100;
+
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random position
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                
+                // Random size
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                
+                // Random animation delay
+                star.style.animationDelay = Math.random() * 2 + 's';
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Game mode configurations
+        const gameModes = {
+            classic: {
+                name: 'Classic Mode',
+                speedMultiplier: 1,
+                lives: 3,
+                barrierFrequency: 1,
+                coinFrequency: 1
+            },
+            speed: {
+                name: 'Speed Rush',
+                speedMultiplier: 2,
+                lives: 3,
+                barrierFrequency: 1.5,
+                coinFrequency: 1.2
+            },
+            survival: {
+                name: 'Survival Mode',
+                speedMultiplier: 1.3,
+                lives: 1,
+                barrierFrequency: 2,
+                coinFrequency: 0.8
+            },
+            peaceful: {
+                name: 'Peaceful Flight',
+                speedMultiplier: 0.7,
+                lives: 5,
+                barrierFrequency: 0.5,
+                coinFrequency: 2
+            }
+        };
+
+        function playGame(mode) {
+            if (!gameModes[mode]) {
+                alert('This game mode is coming soon!');
+                return;
+            }
+
+            // Store the selected game mode in localStorage
+            localStorage.setItem('gameMode', JSON.stringify(gameModes[mode]));
+            localStorage.setItem('gameModeName', mode);
+            
+            // Navigate to the game
+            window.location.href = 'index.html';
+        }
+
+        // Add hover sound effect (optional)
+        document.querySelectorAll('.game-card:not(.coming-soon)').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // You could add a subtle hover sound here
+                card.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Initialize stars when page loads
+        createStars();
+    </script>
+</body>
+</html>

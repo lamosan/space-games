@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Asteroid Dodge Game - Play Free Online | Space Games Collection</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Play the exciting Space Asteroid Dodge game online for free! Navigate your spaceship through dangerous asteroid fields, collect coins, and survive as long as possible.">
+    <meta name="keywords" content="space games, asteroid dodge, browser games, free online games, arcade games, spaceship games">
+    <meta name="author" content="Space Games Collection">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/index.html">
+    <meta property="og:title" content="Space Asteroid Dodge Game - Play Free Online">
+    <meta property="og:description" content="Navigate your spaceship through dangerous asteroid fields in this exciting free browser game!">
+    <meta property="og:image" content="https://yourdomain.com/game-preview.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourdomain.com/index.html">
+    <meta property="twitter:title" content="Space Asteroid Dodge Game">
+    <meta property="twitter:description" content="Navigate your spaceship through dangerous asteroid fields!">
+    <meta property="twitter:image" content="https://yourdomain.com/game-preview.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+            crossorigin="anonymous"></script>
+    
+    <!-- Google Analytics (replace GA_MEASUREMENT_ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+        
+        #gameContainer {
+            text-align: center;
+            position: relative;
+        }
+        
+        #gameCanvas {
+            border: 3px solid #fff;
+            border-radius: 10px;
+            background: #000;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        #gameInfo {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            width: 800px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        #instructions {
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #ccc;
+        }
+        
+        #gameOver {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #fff;
+            display: none;
+            text-align: center;
+        }
+        
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #45a049;
+        }
+        
+        #soundToggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid #fff;
+            color: white;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        #soundToggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        #backToMenu {
+            position: absolute;
+            top: 60px;
+            right: 10px;
+            background: rgba(0, 255, 136, 0.2);
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        #backToMenu:hover {
+            background: rgba(0, 255, 136, 0.3);
+            color: white;
+        }
+        
+        .game-over-menu {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .menu-button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .menu-button:hover {
+            background: #1976D2;
+        }
+        
+        /* Ad Container Styles */
+        .ad-container {
+            margin: 20px 0;
+            text-align: center;
+            min-height: 250px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px;
+        }
+        
+        .ad-banner {
+            margin: 15px auto;
+            display: block;
+        }
+        
+        .ad-sidebar {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+        
+        .rewarded-ad-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(238, 90, 36, 0.3);
+        }
+        
+        .rewarded-ad-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(238, 90, 36, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .ad-sidebar {
+                position: static;
+                transform: none;
+                margin: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <button id="soundToggle" onclick="toggleSound()">🔊 Sound ON</button>
+        <a href="menu.html" id="backToMenu">⬅ Back to Menu</a>
+        
+        <!-- Top Banner Ad -->
+        <div class="ad-container">
+            <ins class="adsbygoogle ad-banner"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+        
+        <div id="instructions">
+            Use ARROW KEYS or WASD to move • Avoid red asteroids • Collect golden coins • Survive as long as possible!
+        </div>
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <div id="gameInfo">
+            <div>Score: <span id="score">0</span></div>
+            <div>Lives: <span id="lives">3</span></div>
+            <div>Level: <span id="level">1</span></div>
+            <!-- Rewarded Ad Button -->
+            <button class="rewarded-ad-btn" onclick="showRewardedAd()">
+                📺 Watch Ad for Extra Life
+            </button>
+        </div>
+        
+        <div id="gameOver">
+            <h2>Game Over!</h2>
+            <p>Final Score: <span id="finalScore">0</span></p>
+            <p>Level Reached: <span id="finalLevel">1</span></p>
+            <div class="game-over-menu">
+                <button onclick="restartGame()">Play Again</button>
+                <button class="rewarded-ad-btn" onclick="showRewardedAd()">📺 Continue with Ad</button>
+                <a href="menu.html" class="menu-button">Main Menu</a>
+            </div>
+        </div>
+        
+        <!-- Sidebar Ad -->
+        <div class="ad-sidebar">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="0987654321"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+        
+        <!-- Bottom Banner Ad -->
+        <div class="ad-container">
+            <ins class="adsbygoogle ad-banner"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="1111111111"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+    
+    <!-- Initialize AdSense -->
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    
+    <script src="game.js"></script>
+</body>
+</html>
